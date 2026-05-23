@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { wishlistService } from "../services/wishlist.service";
 import { ApiResponse } from "../utils/apiResponse";
+import { ensureString } from "../utils/helpers";
 
 export const getWishlist = async (req: Request, res: Response) => {
   const items = await wishlistService.getWishlist(req.user!.id);
@@ -15,7 +16,7 @@ export const addToWishlist = async (req: Request, res: Response) => {
 export const removeFromWishlist = async (req: Request, res: Response) => {
   const result = await wishlistService.removeFromWishlist(
     req.user!.id,
-    req.params.productId
+    ensureString(req.params.productId)!
   );
   res.json(new ApiResponse(result, "Removed from wishlist"));
 };

@@ -3,5 +3,9 @@ dist
 build
 .env
 .env.*
-logs
+
+logs/
+*.log
+
 .DS_Store
+.vscode/
