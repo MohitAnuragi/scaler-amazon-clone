@@ -13,9 +13,12 @@ export const addToWishlist = async (req: Request, res: Response) => {
 };
 
 export const removeFromWishlist = async (req: Request, res: Response) => {
+  const productId = Array.isArray(req.params.productId)
+    ? req.params.productId[0]
+    : req.params.productId;
   const result = await wishlistService.removeFromWishlist(
     req.user!.id,
-    req.params.productId as string
+    productId
   );
   res.json(new ApiResponse(result, "Removed from wishlist"));
 };
