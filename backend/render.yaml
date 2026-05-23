@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: amazon-clone-api
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: CORS_ORIGIN
+        value: https://amazon-clone-frontend.vercel.app
+      - key: LOG_LEVEL
+        value: info
+      - key: MYSQL_HOST
+        scope: runtime
+        sync: false
+      - key: MYSQL_PORT
+        value: "3306"
+      - key: MYSQL_USER
+        scope: runtime
+        sync: false
+      - key: MYSQL_PASSWORD
+        scope: runtime
+        sync: false
+      - key: MYSQL_DATABASE
+        scope: runtime
+        sync: false
+      - key: JWT_SECRET
+        scope: runtime
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 7d
