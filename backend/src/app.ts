@@ -18,7 +18,7 @@ const allowedOrigins = env.CORS_ORIGIN.split(",").map((origin) => origin.trim())
 app.use(helmet());
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: ["https://scaler-amazon-clone-alpha.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   })
